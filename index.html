@@ -1,13 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-console.log("Hello, World!");
+      let humanScore = 0;
+      let computerScore = 0;
+
+      function getComputerChoice() {
+        const randomNum = Math.floor(Math.random() * 3);
+
+        if (randomNum === 0) {
+          return "rock";
+        } else if (randomNum === 1) {
+          return "paper";
+        } else {
+          return "scissors";
+        }
+      }
+
+      function getHumanChoice() {
+        const choice = prompt("Enter rock, paper, or scissors:");
+        return choice.toLowerCase();
+      }
+
+      function playRound(humanChoice, computerChoice) {
+        if (humanChoice === "rock" && computerChoice === "scissors") {
+          humanScore += 1;
+          console.log("You win this round!");
+        }
+        if (humanChoice === "scissors" && computerChoice === "paper") {
+          humanScore += 1;
+          console.log("You win this round!");
+        }
+        if (humanChoice === "paper" && computerChoice === "rock") {
+          humanScore += 1;
+          console.log("You win this round!");
+        }
+
+        if (computerChoice === "rock" && humanChoice === "scissors") {
+          computerScore += 1;
+        }
+        if (computerChoice === "scissors" && humanChoice === "paper") {
+          computerScore += 1;
+        }
+        if (computerChoice === "paper" && humanChoice === "rock") {
+          computerScore += 1;
+        }
+      }
+
+      function playGame() {
+        for (let i = 0; i < 5; i++) {
+          const humanChoice = getHumanChoice();
+          const computerChoice = getComputerChoice();
+
+          playRound(humanChoice, computerChoice);
+          if (humanScore === 3 || computerScore === 3) {
+            break;
+          }
+        }
+        if (humanScore > computerScore) {
+          console.log("You win!");
+        } else if (computerScore > humanScore) {
+          console.log("You lose!");
+        } else {
+          console.log("It's a tie!");
+        }
+      }
+
+      playGame();
     </script>
-</body>
+  </body>
 </html>
